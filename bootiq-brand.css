@@ -1,0 +1,440 @@
+/*!
+ * BOOTIQ brand kit pro prezentace
+ * Generováno z @bootiq-hub/design-tokens — NEEDITOVAT RUČNĚ.
+ */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('./fonts/ClashDisplay-Variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-brand-yellow: #FFCC00; /** Primární značková žlutá — Figma variable 'BOOtiq yellow' + paint style 'BOOTIQ Yellow', na webu 80 výskytů */
+  --color-brand-yellow-hover: #FFD220; /** Světlejší žlutá pro hover stavy (web, 8 výskytů) */
+  --color-neutral-100: #F6EEEE;
+  --color-neutral-200: #D9D9D9;
+  --color-neutral-300: #C4C4C4;
+  --color-neutral-500: #999999;
+  --color-neutral-700: #333333;
+  --color-neutral-800: #1E1E1E; /** Nejčastější tmavé pozadí karet na webu */
+  --color-neutral-850: #1A1A1A;
+  --color-neutral-900: #141414;
+  --color-neutral-950: #050505;
+  --color-neutral-black: #000000;
+  --color-neutral-white: #FFFFFF;
+  --color-alpha-white-3: rgba(255, 255, 255, 0.03);
+  --color-alpha-white-5: rgba(255, 255, 255, 0.05);
+  --color-alpha-white-7: rgba(255, 255, 255, 0.07); /** Jemné pozadí sekcí/karet */
+  --color-alpha-white-10: rgba(255, 255, 255, 0.1); /** Nejčastější border/pozadí na webu (54 výskytů) */
+  --color-alpha-white-20: rgba(255, 255, 255, 0.2);
+  --color-alpha-white-30: rgba(255, 255, 255, 0.3);
+  --color-alpha-white-40: rgba(255, 255, 255, 0.4);
+  --color-alpha-white-60: rgba(255, 255, 255, 0.6); /** Sekundární/tlumený text (39 výskytů) */
+  --color-alpha-white-80: rgba(255, 255, 255, 0.8);
+  --color-alpha-black-10: rgba(0, 0, 0, 0.1);
+  --color-alpha-black-20: rgba(0, 0, 0, 0.2);
+  --color-alpha-yellow-70: rgba(255, 204, 0, 0.7);
+  --color-feedback-error: #E74C3C; /** Chybové stavy formulářů */
+  --color-feedback-danger: #E30613; /** Výrazná červená (ojedinělé použití na webu — sjednotit s error?) */
+  --shadow-elevated: 0 5px 2.5rem 0 rgba(0, 0, 0, 0.35); /** Hlavní stín karet/modálů (web) */
+  --shadow-glow-white: 0 5px 20px 0 rgba(255, 255, 255, 0.15); /** Světelný akcent na tmavém pozadí (web) */
+  --shadow-glow-white-strong: 0 5px 20px 0 rgba(255, 255, 255, 0.25); /** Silnější bílý glow — hover stav (web: button--default:hover) */
+  --shadow-glow-yellow: 0 5px 20px 0 rgba(255, 204, 0, 0.15); /** Žlutý glow — hover akcent (web) */
+  --shadow-photo: 0 -6px 40px 0 rgba(0, 0, 0, 0.45); /** Figma effect style 'photoshadow' — stín fotografií */
+  --gradient-surface: linear-gradient(248deg, rgba(255, 255, 255, 0.07) 12.05%, rgba(255, 255, 255, 0) 71.34%); /** Podklad karet a citací (web: .caseStudyItem, .testimonialItem) */
+  --gradient-image-placeholder: linear-gradient(0deg, rgba(255, 255, 255, 0.07) 20%, rgba(255, 255, 255, 0.07) 80%); /** Podklad obrázků před načtením (web: .caseStudyItem-image) */
+  --gradient-input: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.05)); /** Podklad formulářových polí (web: .contactForm-box input) */
+  --gradient-panel: linear-gradient(180deg, #1A1A1A, #141414); /** Podklad formulářového panelu (web: .contactForm) — neutral-850 → neutral-900 */
+  --motion-duration-fast: 0.2s; /** Hover/focus mikrointerakce */
+  --motion-duration-base: 0.3s; /** Standardní přechody (nejčastější na webu) */
+  --motion-easing-default: ease;
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px; /** Hlavní desktop breakpoint webu (50 media queries) */
+  --breakpoint-xl: 1200px;
+  --container-max-width: 90rem; /** 1440px — max šířka layoutu (web) */
+  --container-narrow: 52.5rem; /** 840px — užší obsahový sloupec (web) */
+  --space-0: 0;
+  --space-1: 0.25rem; /** 4px */
+  --space-2: 0.5rem; /** 8px */
+  --space-3: 0.75rem; /** 12px */
+  --space-4: 1rem; /** 16px */
+  --space-5: 1.25rem; /** 20px — nejčastější mezera na webu */
+  --space-6: 1.5rem; /** 24px */
+  --space-8: 2rem; /** 32px */
+  --space-10: 2.5rem; /** 40px — druhá nejčastější (sekce) */
+  --space-12: 3rem; /** 48px */
+  --space-16: 4rem; /** 64px */
+  --space-20: 5rem; /** 80px — vertikální rytmus sekcí */
+  --radius-none: 0;
+  --radius-sm: 0.25rem; /** 4px — dominantní radius webu (136 výskytů: tlačítka, karty, inputy) */
+  --radius-lg: 1.25rem; /** 20px — větší karty */
+  --radius-xl: 1.875rem; /** 30px — hero prvky */
+  --radius-circle: 50%;
+  --radius-pill: 999px;
+  --font-family-display: 'Clash Display', sans-serif; /** Nadpisy — Clash Display (web i Figma) */
+  --font-family-body: 'Clash Display', sans-serif; /** Běžný text — Clash Display (web i Figma). Drift Clash Grotesk/Inter vyřešen: sjednoceno na Clash Display. */
+  --font-size-xs: 0.75rem; /** 12px — Figma B3 */
+  --font-size-sm: 0.875rem; /** 14px — Figma B2 */
+  --font-size-base: 1rem; /** 16px — Figma B1 */
+  --font-size-lg: 1.25rem; /** 20px — Figma H7/H8 */
+  --font-size-xl: 1.5rem; /** 24px — Figma H6 */
+  --font-size-2xl: 1.75rem; /** 28px — Figma H5 */
+  --font-size-3xl: 2.25rem; /** 36px — Figma H4 */
+  --font-size-4xl: 3.75rem; /** 60px — Figma H3 */
+  --font-size-5xl: 4.75rem; /** 76px — Figma H2 */
+  --font-size-6xl: 6.75rem; /** 108px — Figma H1 */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500; /** Váha všech nadpisů dle Figmy */
+  --font-weight-semibold: 600;
+  --font-tracking-tight: 0.02em; /** Figma 2% — většina nadpisů */
+  --font-tracking-normal: 0.04em; /** Figma 4% — subheadline */
+  --font-tracking-wide: 0.05em; /** Figma 5% — body B1, H2 */
+  --font-tracking-caps: 0.2em; /** Uppercase overline (web: .overline-text, 2.8px/14px) */
+  --text-style-h1-line-height: 7.25rem; /** 116px */
+  --text-style-h2-line-height: 5.375rem; /** 86px */
+  --text-style-h3-line-height: 4.375rem; /** 70px */
+  --text-style-h4-line-height: 2.5rem; /** 40px */
+  --text-style-h5-line-height: 2.375rem; /** 38px */
+  --text-style-h6-line-height: 2.125rem; /** 34px */
+  --text-style-h7-line-height: 1.5rem; /** 24px */
+  --text-style-subheadline-line-height: 1.875rem; /** 30px — Figma H8 */
+  --text-style-body-1-line-height: 1.5rem; /** 24px */
+  --text-style-body-2-line-height: 1.25rem; /** 20px */
+  --text-style-body-3-line-height: 1rem; /** 16px */
+  --text-style-overline-line-height: 1.25rem; /** 20px — Figma O1 (Clash Grotesk Semibold) */
+  --color-text-primary: var(--color-neutral-white);
+  --color-text-secondary: var(--color-alpha-white-60);
+  --color-text-subtle: var(--color-alpha-white-40);
+  --color-text-inverse: var(--color-neutral-900); /** Text na žlutém/světlém pozadí */
+  --color-text-accent: var(--color-brand-yellow);
+  --color-surface-base: var(--color-neutral-900);
+  --color-surface-raised: var(--color-neutral-800);
+  --color-surface-subtle: var(--color-alpha-white-7);
+  --color-surface-overlay: var(--color-alpha-white-10);
+  --color-border-default: var(--color-alpha-white-10);
+  --color-border-strong: var(--color-alpha-white-20);
+  --color-border-accent: var(--color-brand-yellow);
+  --text-style-h1-size: var(--font-size-6xl);
+  --text-style-h1-tracking: var(--font-tracking-tight);
+  --text-style-h2-size: var(--font-size-5xl);
+  --text-style-h2-tracking: var(--font-tracking-wide);
+  --text-style-h3-size: var(--font-size-4xl);
+  --text-style-h3-tracking: var(--font-tracking-tight);
+  --text-style-h4-size: var(--font-size-3xl);
+  --text-style-h4-tracking: var(--font-tracking-tight);
+  --text-style-h5-size: var(--font-size-2xl);
+  --text-style-h5-tracking: var(--font-tracking-tight);
+  --text-style-h6-size: var(--font-size-xl);
+  --text-style-h6-tracking: var(--font-tracking-tight);
+  --text-style-h7-size: var(--font-size-lg);
+  --text-style-h7-tracking: var(--font-tracking-tight);
+  --text-style-subheadline-size: var(--font-size-lg);
+  --text-style-subheadline-tracking: var(--font-tracking-normal);
+  --text-style-body-1-size: var(--font-size-base);
+  --text-style-body-1-tracking: var(--font-tracking-wide);
+  --text-style-body-2-size: var(--font-size-sm);
+  --text-style-body-2-tracking: var(--font-tracking-tight);
+  --text-style-body-3-size: var(--font-size-xs);
+  --text-style-body-3-tracking: var(--font-tracking-tight);
+  --text-style-overline-size: var(--font-size-sm);
+  --text-style-overline-weight: var(--font-weight-semibold);
+  --text-style-overline-tracking: var(--font-tracking-caps); /** Web .overline-text používá 0.2em a weight 500 — váhu potvrdit s designérem */
+}
+
+/* ============================================================
+   BOOTIQ prezentační vrstva
+   Sedí NAD design tokeny. Base styly jsou na elementech, takže
+   fungují i pro HTML bez jediné třídy. Pozn.: body font zatím
+   Clash Display (Clash Grotesk woff2 dosud nehostujeme — drift #1).
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--color-neutral-900);
+  color: var(--color-neutral-white);
+  font-family: 'Clash Display', var(--font-family-display);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  letter-spacing: var(--font-tracking-wide);
+}
+
+/* ---------- Typografie na elementech ---------- */
+
+h1 {
+  font-size: clamp(2.6rem, 6vw, 4.75rem);
+  line-height: 1.13;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-tracking-wide);
+  margin: 0 0 var(--space-6);
+}
+
+h2 {
+  font-size: clamp(1.9rem, 3.5vw, 2.25rem);
+  line-height: 1.2;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-tracking-tight);
+  margin: 0 0 var(--space-6);
+}
+
+h3 {
+  font-size: var(--text-style-h5-size);
+  line-height: var(--text-style-h5-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--text-style-h5-tracking);
+  margin: 0 0 var(--space-4);
+}
+
+h4, h5, h6 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  margin: 0 0 var(--space-3);
+}
+
+p {
+  margin: 0 0 var(--space-4);
+  color: var(--color-alpha-white-80);
+}
+
+strong { font-weight: var(--font-weight-semibold); color: var(--color-neutral-white); }
+em { color: var(--color-brand-yellow); font-style: normal; }
+
+a {
+  color: var(--color-brand-yellow);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+a:hover { color: var(--color-brand-yellow-hover); text-decoration: underline; }
+
+ul, ol {
+  margin: 0 0 var(--space-4);
+  padding-left: 1.25em;
+  color: var(--color-alpha-white-80);
+}
+li { margin-bottom: var(--space-2); }
+li::marker { color: var(--color-brand-yellow); }
+
+blockquote {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-6) var(--space-8);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  background: var(--gradient-surface);
+  color: var(--color-alpha-white-80);
+  font-size: var(--font-size-lg);
+}
+blockquote footer {
+  margin-top: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-sm);
+}
+th {
+  text-align: left;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-white);
+  border-bottom: 1px solid var(--color-alpha-white-40);
+  padding: var(--space-2) var(--space-3);
+}
+td {
+  color: var(--color-alpha-white-80);
+  border-bottom: 1px solid var(--color-alpha-white-10);
+  padding: var(--space-2) var(--space-3);
+}
+
+code, pre {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  letter-spacing: 0;
+}
+code {
+  background: var(--color-alpha-white-7);
+  border: 1px solid var(--color-alpha-white-10);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.4em;
+  color: var(--color-brand-yellow);
+}
+pre {
+  background: var(--color-neutral-950);
+  border: 1px solid var(--color-alpha-white-10);
+  border-radius: var(--radius-sm);
+  padding: var(--space-5);
+  overflow-x: auto;
+}
+pre code { background: none; border: 0; padding: 0; color: var(--color-alpha-white-80); }
+
+img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
+hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(--space-6) 0; }
+
+/* ---------- Slidy ---------- */
+
+.slide {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 7vw, 5rem);
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide > * { max-width: 60rem; }
+
+/* Titulní slide */
+.slide--title { align-items: flex-start; }
+.slide--title h1 { font-size: clamp(3rem, 8vw, 6.75rem); line-height: 1.07; }
+.slide--title .subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 40rem;
+}
+
+/* Dvousloupcový slide */
+.slide--split .columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .slide--split .columns { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+
+/* Statistiky (vzhled NumberItem z webu) */
+.slide--stats .stats,
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--space-10);
+  width: 100%;
+}
+.stat .value {
+  font-size: clamp(2.125rem, 5.3vw, 4.75rem);
+  line-height: 1.15;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-white);
+}
+.stat .label {
+  font-size: var(--font-size-lg);
+  color: var(--color-alpha-white-80);
+  margin-top: var(--space-2);
+}
+
+/* Závěrečný slide */
+.slide--end { align-items: center; text-align: center; }
+.slide--end h1 em { color: var(--color-brand-yellow); }
+
+/* ---------- Utility ---------- */
+
+.overline {
+  display: block;
+  text-transform: uppercase;
+  font-size: var(--text-style-overline-size);
+  line-height: var(--text-style-overline-line-height);
+  letter-spacing: var(--text-style-overline-tracking);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.accent { color: var(--color-brand-yellow); }
+.muted { color: var(--color-text-secondary); }
+
+.panel {
+  padding: var(--space-6) var(--space-8);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  background: var(--gradient-surface);
+}
+
+.tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background: var(--color-alpha-white-5);
+  border: 1px solid var(--color-alpha-white-40);
+  border-radius: var(--radius-sm);
+  margin-right: var(--space-2);
+}
+
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+  opacity: 0.85;
+}
+.logos img, .logos svg { max-height: 2.5rem; }
+
+/* ---------- Runtime prvky (bootiq-slides.js) ---------- */
+
+.biq-progress {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: var(--color-brand-yellow);
+  z-index: 10;
+  transition: width 0.25s ease;
+}
+
+.biq-counter {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-4);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  z-index: 10;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Tisk / PDF (Ctrl+P) ---------- */
+
+@page {
+  size: 338mm 190mm; /* 16:9 */
+  margin: 0;
+}
+
+@media print {
+  html { scroll-snap-type: none; }
+  body { background: var(--color-neutral-900); }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    min-height: auto;
+    height: 190mm;
+    break-after: page;
+    page-break-after: always;
+  }
+  .biq-progress, .biq-counter { display: none; }
+}
