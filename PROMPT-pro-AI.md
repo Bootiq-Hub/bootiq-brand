@@ -16,6 +16,8 @@ Vytvoř HTML prezentaci podle následujících závazných pravidel firmy BOOTIQ
 <script src="https://bootiq-hub.github.io/bootiq-brand/bootiq-slides.js" defer></script>
 ```
 
+**Obsahové šablony** — pokud ti uživatel přiložil soubor šablony (nabídka, case study, report…), vyjdi z něj: nahraď placeholdery v [hranatých závorkách] skutečným obsahem a slidy bez obsahu vypusť. Bez přiložené šablony vycházej z univerzální kostry https://bootiq-hub.github.io/bootiq-brand/template.html
+
 **Struktura** — každý slide je `<section class="slide">…</section>` přímo v `<body>`. Dostupné varianty slidů:
 
 - `slide slide--title` — titulní: `<span class="overline">`, `<h1>`, `<p class="subtitle">`
