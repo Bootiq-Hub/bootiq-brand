@@ -10,40 +10,71 @@
 </head>
 <body>
 
-  <!-- SLIDE 1: Titulní -->
+  <!-- SLIDE 1: Titulní (rodina 1) -->
   <section class="slide slide--title">
-    <span class="overline">BOOTIQ · návrh spolupráce</span>
-    <h1>Název prezentace<br><em>se žlutým akcentem</em></h1>
-    <p class="subtitle">Podtitul — jedna dvě věty o čem to bude.</p>
-    <p>
-      <span class="tag">Design</span>
-      <span class="tag">Digitální řešení na míru</span>
-    </p>
+    <span class="chip">Smart Digital Solutions</span>
+    <h1>Název prezentace<br><span class="muted">podtitulek do druhého řádku</span></h1>
+    <p class="subtitle">Jedna dvě věty o čem to bude.</p>
+    <p class="author"><strong>Jméno Příjmení</strong> — pozice · jmeno.prijmeni@bootiq.io</p>
+    <!-- volitelný obrázek/asset vpravo nahoře: -->
+    <div class="slide__media">obrázek / klávesnice</div>
   </section>
 
-  <!-- SLIDE 2: Agenda -->
-  <section class="slide">
-    <span class="overline">Agenda</span>
-    <h2>O čem dnes budeme mluvit</h2>
+  <!-- SLIDE 2: Kapitola / oddělovač (rodina 2) — varianty: slide--photo, slide--cursors, slide--squares -->
+  <section class="slide slide--section slide--cursors">
+    <span class="overline">Kapitola 01</span>
+    <h2>Úvod</h2>
+    <p class="subtitle">Krátký předěl mezi bloky prezentace.</p>
+  </section>
+
+  <!-- SLIDE 3: Obsah prezentace / TOC (rodina 3) — čísla se generují automaticky -->
+  <section class="slide slide--toc">
+    <span class="overline">Obsah prezentace</span>
+    <div class="toc-grid">
+      <div class="toc-media">náhled / notebook</div>
+      <ol class="toc">
+        <li>O nás</li>
+        <li>Co nabízíme</li>
+        <li>Jak pracujeme</li>
+        <li>Reference</li>
+        <li>Kontakt</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: Text (rodina 4) — varianty: slide--right, slide--cols -->
+  <section class="slide slide--text">
+    <span class="overline">O nás</span>
+    <h2>Nadpis textového slidu</h2>
+    <div class="prose">
+      <p>Odstavec textu. <strong>Tučné</strong> pro důraz, <em>em pro žlutý akcent</em>.</p>
+      <p>Druhý odstavec — držte se max tří krátkých odstavců na slide.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: Odrážkový seznam (rodina 5) -->
+  <section class="slide slide--bullets">
+    <span class="overline">Proč my</span>
+    <h2>Klíčové body</h2>
     <ul>
-      <li>První bod agendy</li>
-      <li>Druhý bod agendy</li>
-      <li>Třetí bod agendy</li>
+      <li>První bod — stručně a jasně.</li>
+      <li>Druhý bod.</li>
+      <li>Třetí bod.</li>
     </ul>
   </section>
 
-  <!-- SLIDE 3: Obsahový -->
+  <!-- SLIDE 6: Obsahový s panelem -->
   <section class="slide">
     <span class="overline">Sekce</span>
     <h2>Nadpis obsahového slidu</h2>
-    <p>Odstavec textu. <strong>Tučné</strong> pro důraz, <em>em pro žlutý akcent</em>.</p>
+    <p>Odstavec textu s <em>akcentem</em>.</p>
     <div class="panel">
       <h3>Zvýrazněný panel</h3>
       <p>Pro klíčové sdělení nebo shrnutí.</p>
     </div>
   </section>
 
-  <!-- SLIDE 4: Dva sloupce -->
+  <!-- SLIDE 7: Dva sloupce -->
   <section class="slide slide--split">
     <span class="overline">Srovnání</span>
     <h2>Dvousloupcový slide</h2>
@@ -59,7 +90,7 @@
     </div>
   </section>
 
-  <!-- SLIDE 5: Statistiky -->
+  <!-- SLIDE 8: Statistiky -->
   <section class="slide slide--stats">
     <span class="overline">Čísla</span>
     <h2>BOOTIQ v číslech</h2>
@@ -70,7 +101,7 @@
     </div>
   </section>
 
-  <!-- SLIDE 6: Citace -->
+  <!-- SLIDE 9: Citace -->
   <section class="slide">
     <span class="overline">Reference</span>
     <blockquote>
@@ -79,7 +110,7 @@
     </blockquote>
   </section>
 
-  <!-- SLIDE 7: Závěr -->
+  <!-- SLIDE 10: Závěr -->
   <section class="slide slide--end">
     <h1>Pojďme do toho <em>společně</em></h1>
     <p class="subtitle">jmeno.prijmeni@bootiq.io · +420 000 000 000</p>

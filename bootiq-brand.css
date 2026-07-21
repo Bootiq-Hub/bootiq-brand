@@ -300,17 +300,77 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
   max-width: 100%;
   overflow: hidden;
   position: relative;
+  isolation: isolate;
 }
 
-.slide > * { max-width: 60rem; }
+/* Obsah nad dekoracemi (glow, badge, dekory pozadí). */
+.slide > * { max-width: 60rem; position: relative; z-index: 1; }
 
-/* Titulní slide */
+/* Sdílený vizuální podpis — žlutý prosvit na levé hraně (rodiny 1–20).
+   Dekorativní, pod obsahem; funguje i pro HTML bez tříd. */
+.slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    58% 78% at 0% 45%,
+    color-mix(in srgb, var(--color-brand-yellow) 9%, transparent),
+    transparent 68%
+  );
+}
+
+/* Sdílený badge „B." vpravo nahoře na všech slidech; na titulních plné logo. */
+.slide::after {
+  content: 'B.';
+  position: absolute;
+  top: clamp(1.25rem, 3vw, 2.75rem);
+  right: clamp(1.25rem, 3vw, 2.75rem);
+  z-index: 2;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+  letter-spacing: var(--font-tracking-tight);
+  color: var(--color-brand-yellow);
+  opacity: 0.9;
+}
+
+/* ---------- Rodina 1: Titulní (slide--title) ---------- */
 .slide--title { align-items: flex-start; }
+.slide--title::after { content: 'BOOTIQ'; letter-spacing: var(--font-tracking-caps); }
 .slide--title h1 { font-size: clamp(3rem, 8vw, 6.75rem); line-height: 1.07; }
+/* druhý řádek titulku šedě: <h1>Řádek<br><span class="muted">Řádek</span></h1> */
+.slide--title h1 .muted { color: var(--color-text-secondary); }
 .slide--title .subtitle {
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
   max-width: 40rem;
+}
+/* Autor / patička titulní */
+.slide--title .author {
+  margin-top: var(--space-8);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+.slide--title .author strong { color: var(--color-neutral-white); }
+/* Obrázkový slot (klávesnice, 3D prvek) vpravo nahoře — placeholder bez assetu */
+.slide__media {
+  position: absolute;
+  top: clamp(2rem, 6vw, 4.5rem);
+  right: clamp(2rem, 6vw, 4.5rem);
+  z-index: 1;
+  width: clamp(14rem, 32vw, 26rem);
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-image-placeholder);
+  border: 1px solid var(--color-alpha-white-10);
+  display: grid;
+  place-items: center;
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+}
+@media (max-width: 768px) {
+  .slide__media { display: none; }
 }
 
 /* Dvousloupcový slide */
@@ -349,7 +409,624 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
 .slide--end { align-items: center; text-align: center; }
 .slide--end h1 em { color: var(--color-brand-yellow); }
 
+/* ---------- Rodina 2: Kapitola / oddělovač (slide--section) ---------- */
+/* Centrovaný předěl mezi bloky prezentace. Slidy 32–35 (4 varianty pozadí). */
+.slide--section {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.slide--section > * { max-width: 46rem; }
+.slide--section h2 {
+  font-size: clamp(2.4rem, 6vw, 4.75rem);
+  line-height: 1.1;
+}
+.slide--section .subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}
+
+/* --photo: celoplošné foto pozadí (placeholder), ztlumené do tmava */
+.slide--section.slide--photo {
+  background:
+    linear-gradient(0deg, var(--color-alpha-black-20), var(--color-alpha-black-20)),
+    var(--gradient-image-placeholder);
+}
+.slide--section.slide--photo::before {
+  background:
+    linear-gradient(0deg, var(--color-neutral-900) 0%, transparent 45%, var(--color-neutral-900) 100%),
+    radial-gradient(58% 78% at 0% 45%, color-mix(in srgb, var(--color-brand-yellow) 9%, transparent), transparent 68%);
+}
+
+/* --cursors: dekorativní 3D kurzory / křížky v rozích */
+.slide--section.slide--cursors::before {
+  background:
+    radial-gradient(circle at 12% 22%, var(--color-alpha-white-10) 0 2px, transparent 3px),
+    radial-gradient(circle at 88% 20%, var(--color-alpha-white-10) 0 2px, transparent 3px),
+    radial-gradient(circle at 16% 82%, var(--color-alpha-white-10) 0 2px, transparent 3px),
+    radial-gradient(circle at 84% 80%, var(--color-alpha-white-10) 0 2px, transparent 3px),
+    radial-gradient(58% 78% at 0% 45%, color-mix(in srgb, var(--color-brand-yellow) 9%, transparent), transparent 68%);
+}
+.slide--section.slide--cursors .deco-cursor {
+  position: absolute;
+  z-index: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--color-brand-yellow);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.slide--section.slide--cursors .deco-cursor:nth-of-type(1) { top: 14%; left: 14%; }
+.slide--section.slide--cursors .deco-cursor:nth-of-type(2) { bottom: 16%; right: 15%; color: var(--color-neutral-white); opacity: 0.35; }
+
+/* --squares: pixelové clustery čtverců v rozích */
+.slide--section.slide--squares::before {
+  --sq: var(--color-alpha-white-10);
+  background:
+    conic-gradient(from 0deg, transparent 0) padding-box,
+    radial-gradient(58% 78% at 0% 45%, color-mix(in srgb, var(--color-brand-yellow) 9%, transparent), transparent 68%);
+  box-shadow:
+    clamp(2rem, 6vw, 5rem) clamp(2rem, 6vw, 5rem) 0 0 var(--color-alpha-white-5) inset;
+}
+.slide--section.slide--squares .deco-squares {
+  position: absolute;
+  z-index: 0;
+  width: 3px;
+  height: 3px;
+  color: var(--color-alpha-white-20);
+  box-shadow:
+    0 0 0 1.5px currentColor, 10px 0 0 1.5px currentColor, 20px 0 0 1.5px currentColor,
+    0 10px 0 1.5px currentColor, 20px 10px 0 1.5px currentColor,
+    0 20px 0 1.5px currentColor, 10px 20px 0 1.5px currentColor;
+  pointer-events: none;
+}
+.slide--section.slide--squares .deco-squares:nth-of-type(1) { top: 16%; left: 12%; }
+.slide--section.slide--squares .deco-squares:nth-of-type(2) { bottom: 20%; right: 13%; }
+
+/* ---------- Rodina 3: Obsah prezentace / TOC (slide--toc) ---------- */
+/* Vlevo mediální plocha (notebook), vpravo číslovaný seznam kapitol. Slidy 36–37. */
+.slide--toc > * { max-width: none; width: 100%; }
+.slide--toc .toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-16);
+  align-items: center;
+  width: 100%;
+}
+.slide--toc .toc-media {
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-image-placeholder);
+  border: 1px solid var(--color-alpha-white-10);
+  display: grid;
+  place-items: center;
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+}
+.toc {
+  list-style: none;
+  counter-reset: toc;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+}
+.toc li {
+  counter-increment: toc;
+  display: grid;
+  grid-template-columns: 2.75rem 1fr;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-alpha-white-10);
+  color: var(--color-neutral-white);
+  font-size: var(--font-size-lg);
+}
+.toc li::before {
+  content: counter(toc, decimal-leading-zero);
+  color: var(--color-brand-yellow);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+.toc li::marker { content: none; }
+@media (max-width: 768px) {
+  .slide--toc .toc-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+}
+
+/* ---------- Rodina 4: Text — odstavce (slide--text) ---------- */
+/* Subheadline + nadpis + text. Výchozí 1 sloupec ~2/3 šířky. Slidy 38–40. */
+.slide--text .prose { max-width: 42rem; }
+/* --right: textový blok v pravé polovině */
+.slide--text.slide--right { align-items: flex-end; text-align: left; }
+.slide--text.slide--right > * { margin-left: auto; }
+.slide--text.slide--right .prose { max-width: 40rem; }
+/* --cols: dva textové sloupce */
+.slide--text.slide--cols > * { max-width: none; }
+.slide--text.slide--cols .columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+  width: 100%;
+}
+.slide--text.slide--cols .columns > * { max-width: 34rem; }
+@media (max-width: 768px) {
+  .slide--text.slide--cols .columns { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+
+/* ---------- Rodina 5: Odrážkový seznam (slide--bullets) ---------- */
+/* Prominentní seznam s většími odrážkami. Slide 49. */
+.slide--bullets ul {
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+  max-width: 46rem;
+}
+.slide--bullets li {
+  position: relative;
+  padding-left: var(--space-8);
+  font-size: var(--font-size-lg);
+  color: var(--color-neutral-white);
+  line-height: 1.4;
+}
+.slide--bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand-yellow);
+}
+
+/* ============================================================
+   Rodiny 6–20 — reprodukce podle KATALOG.md
+   Sdílené stavební prvky: .fig (placeholder obrázku), .num (žluté číslo),
+   .device (rámečky zařízení). Layouty využívají jen design tokeny.
+   ============================================================ */
+
+/* Sdílené prvky */
+.fig {
+  background: var(--gradient-image-placeholder);
+  border: 1px solid var(--color-alpha-white-10);
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+  min-height: 8rem;
+}
+.num {
+  color: var(--color-brand-yellow);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Rodina 6: Mřížka číslovaných karet (slidy 41–50) ---------- */
+.slide--grid-cards > * { max-width: none; }
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8) var(--space-12);
+  width: 100%;
+}
+.slide--grid-cards.cols-2 .grid-cards { grid-template-columns: repeat(2, 1fr); }
+.num-card .num { font-size: var(--font-size-2xl); display: block; margin-bottom: var(--space-2); }
+.num-card h3 { font-size: var(--font-size-lg); margin: 0 0 var(--space-2); }
+.num-card p { margin: 0; font-size: var(--font-size-sm); }
+@media (max-width: 768px) { .grid-cards { grid-template-columns: 1fr; } }
+
+/* ---------- Rodina 7: Tabulky (slidy 60–64) ---------- */
+.slide--table > * { max-width: none; }
+.slide--table table { font-size: var(--font-size-sm); }
+.slide--table th, .slide--table td {
+  border: 1px solid var(--color-alpha-white-10);
+  padding: var(--space-3);
+  background: var(--color-alpha-white-3);
+}
+.slide--table th { background: var(--color-alpha-white-7); color: var(--color-neutral-white); }
+
+/* ---------- Rodina 8: Ceník / srovnání plánů (slidy 57–59) ---------- */
+.slide--pricing > *, .slide--compare > * { max-width: none; }
+.slide--pricing table th {
+  background: var(--color-brand-yellow);
+  color: var(--color-text-inverse);
+  border: 1px solid var(--color-brand-yellow);
+}
+.slide--pricing table td { border: 1px solid var(--color-alpha-white-10); padding: var(--space-3); }
+.slide--pricing tr.total td {
+  background: var(--color-alpha-white-7);
+  color: var(--color-neutral-white);
+  font-weight: var(--font-weight-semibold);
+}
+.slide--compare table { font-size: var(--font-size-sm); }
+.slide--compare th, .slide--compare td {
+  border: 1px solid var(--color-alpha-white-10);
+  padding: var(--space-3);
+  text-align: center;
+}
+.slide--compare th:first-child, .slide--compare td:first-child { text-align: left; }
+.slide--compare .featured {
+  background: color-mix(in srgb, var(--color-brand-yellow) 12%, transparent);
+}
+.check::before { content: '✓'; color: var(--color-brand-yellow); font-weight: var(--font-weight-semibold); }
+.cross::before { content: '✕'; color: var(--color-text-subtle); }
+
+/* ---------- Rodina 9: Pipeline / Gantt / Kanban (slidy 53–56) ---------- */
+.slide--pipeline > *, .slide--kanban > * { max-width: none; }
+.gantt { display: grid; gap: var(--space-2); width: 100%; font-size: var(--font-size-sm); }
+.gantt-head, .gantt-row {
+  display: grid;
+  grid-template-columns: 9rem repeat(var(--cols, 4), 1fr);
+  align-items: center;
+  gap: 2px;
+}
+.gantt-head span { color: var(--color-text-secondary); text-align: center; }
+.gantt-head span:first-child { text-align: left; }
+.gantt-row { background: var(--color-alpha-white-3); border-radius: var(--radius-sm); padding: 3px; }
+.gantt .cat { color: var(--color-neutral-white); padding-left: var(--space-1); }
+.gantt .bar {
+  grid-row: 1;
+  height: 1.4rem;
+  margin: 0 2px;
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-yellow);
+  opacity: 0.85;
+}
+.gantt .bar.muted { background: var(--color-alpha-white-30); opacity: 1; }
+.kanban { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); width: 100%; }
+.kanban-col h4 {
+  color: var(--color-brand-yellow);
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--font-tracking-caps);
+}
+.kanban-card {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-sm);
+}
+@media (max-width: 768px) { .kanban { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Rodina 10: Timeline (slide 91) ---------- */
+.slide--timeline > * { max-width: none; }
+.timeline {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  min-height: 18rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 2px;
+  background: var(--color-alpha-white-20);
+}
+.tl-item { position: relative; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.9rem; height: 0.9rem;
+  border-radius: var(--radius-circle);
+  background: var(--color-brand-yellow);
+  z-index: 1;
+}
+.tl-item .tl-body {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12rem;
+  max-width: 80%;
+  text-align: center;
+}
+.tl-item:nth-child(odd) .tl-body { bottom: calc(50% + 1.5rem); }
+.tl-item:nth-child(even) .tl-body { top: calc(50% + 1.5rem); }
+.tl-date { color: var(--color-brand-yellow); font-weight: var(--font-weight-medium); font-size: var(--font-size-lg); }
+.tl-text { font-size: var(--font-size-sm); color: var(--color-alpha-white-80); }
+
+/* ---------- Rodina 11: Citace (slidy 94–97) ---------- */
+.slide--quote > * { max-width: none; }
+.slide--quote blockquote {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: clamp(1.6rem, 3.5vw, 2.75rem);
+  line-height: 1.3;
+  color: var(--color-neutral-white);
+  max-width: 48rem;
+  position: relative;
+}
+.slide--quote blockquote::before {
+  content: '\201C';
+  color: var(--color-brand-yellow);
+  font-size: 3em;
+  line-height: 0;
+  position: absolute;
+  left: -0.55em;
+  top: 0.45em;
+}
+.slide--quote blockquote footer {
+  margin-top: var(--space-6);
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+}
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-6);
+  width: 100%;
+}
+.quote-card {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+.quote-card::before {
+  content: '\201C';
+  color: var(--color-brand-yellow);
+  font-size: 2.5rem;
+  line-height: 1;
+  display: block;
+}
+.quote-card footer { margin-top: var(--space-4); font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+
+/* ---------- Rodina 12: Text + obrázky (slidy 65–73) + Rodina 19 case ---------- */
+.slide--media, .slide--case {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+.slide--media > *, .slide--case > * { max-width: none; }
+.slide--media .media-text, .slide--case .media-text {
+  align-self: center;
+  padding: clamp(2rem, 7vw, 5rem);
+}
+.slide--case { align-items: center; }
+.media-figs { display: grid; gap: var(--space-3); grid-auto-rows: 1fr; }
+.media-figs.cols-2 { grid-template-columns: 1fr 1fr; }
+.media-figs .fig { border-radius: 0; min-height: 0; }
+.slide--media.slide--mirror .media-text, .slide--case.slide--mirror .media-text { order: 2; }
+@media (max-width: 768px) {
+  .slide--media, .slide--case { grid-template-columns: 1fr; }
+  .slide--media.slide--mirror .media-text, .slide--case.slide--mirror .media-text { order: 0; }
+}
+
+/* ---------- Rodina 13: Image placeholder plochy (slidy 85–90) ---------- */
+.slide--gallery { padding: 0; }
+.slide--gallery > * { max-width: none; }
+.gallery {
+  display: grid;
+  gap: var(--space-2);
+  height: 100vh;
+  height: 100svh;
+  grid-template-columns: repeat(var(--cols, 1), 1fr);
+  grid-auto-rows: 1fr;
+}
+.gallery .fig { border-radius: 0; min-height: 0; }
+
+/* ---------- Rodina 14: Diagramy — proces s kartami (slidy 74–79) ---------- */
+.slide--diagram-flow > * { max-width: none; }
+.flow { display: flex; align-items: center; gap: var(--space-3); width: 100%; flex-wrap: wrap; }
+.flow-step {
+  flex: 1;
+  min-width: 9rem;
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.flow-step h3 { font-size: var(--font-size-lg); margin: var(--space-2) 0; }
+.flow-step p { margin: 0; font-size: var(--font-size-sm); }
+.flow-arrow { color: var(--color-brand-yellow); font-size: var(--font-size-xl); flex: 0 0 auto; }
+.flow--zigzag .flow-step:nth-child(odd) { transform: translateY(-1.5rem); }
+.flow--zigzag .flow-step:nth-child(even) { transform: translateY(1.5rem); }
+
+/* ---------- Rodina 15: Diagramy — strom / kruh (slidy 80–82) ---------- */
+.slide--diagram-tree > *, .slide--diagram-circle > *, .slide--org > * { max-width: none; }
+.tree { display: grid; gap: var(--space-5); justify-items: center; width: 100%; }
+.tree-level { display: flex; gap: var(--space-6); justify-content: center; flex-wrap: wrap; }
+.tree-node, .tree-arrow { text-align: center; }
+.tree-node {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-6);
+}
+.tree-node.accent { border-color: var(--color-border-accent); }
+.tree-arrow { color: var(--color-brand-yellow); font-size: var(--font-size-xl); line-height: 1; }
+.orbit {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  place-items: center;
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+.orbit .node {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-circle);
+  aspect-ratio: 1;
+  width: 8.5rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: var(--space-4);
+  font-size: var(--font-size-sm);
+}
+.orbit .node.center {
+  grid-column: 2;
+  grid-row: 2;
+  width: 11rem;
+  background: var(--color-brand-yellow);
+  color: var(--color-text-inverse);
+  border: 0;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+}
+
+/* ---------- Rodina 16: SWOT 2×2 (slidy 92–93) ---------- */
+.slide--swot > * { max-width: none; }
+.swot {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+.swot-card {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+.swot-card h3 { color: var(--color-brand-yellow); margin: 0 0 var(--space-2); }
+.swot-card p { margin: 0; font-size: var(--font-size-sm); }
+.swot-center {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8rem; height: 8rem;
+  border-radius: var(--radius-circle);
+  background: var(--color-neutral-900);
+  border: 1px solid var(--color-border-strong);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-weight: var(--font-weight-medium);
+  z-index: 2;
+}
+
+/* ---------- Rodina 17: Mockupy telefon / notebook (slidy 98–111) ---------- */
+.slide--mockup > * { max-width: none; }
+.devices { display: flex; gap: var(--space-6); align-items: center; justify-content: center; flex-wrap: wrap; }
+.device { position: relative; flex: 0 0 auto; }
+.device .screen { width: 100%; height: 100%; background: var(--gradient-image-placeholder); display: block; }
+.device--phone {
+  width: 12rem;
+  aspect-ratio: 9 / 19;
+  border: 6px solid var(--color-neutral-700);
+  border-radius: 2rem;
+  background: var(--color-neutral-950);
+  overflow: hidden;
+}
+.device--phone::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 35%; height: 1rem;
+  background: var(--color-neutral-700);
+  border-radius: 0 0 0.6rem 0.6rem;
+  z-index: 2;
+}
+.device--laptop { width: 26rem; max-width: 100%; }
+.device--laptop .screen {
+  aspect-ratio: 16 / 10;
+  border: 8px solid var(--color-neutral-700);
+  border-radius: 0.8rem;
+}
+.device--laptop::after {
+  content: '';
+  display: block;
+  height: 0.6rem;
+  width: 116%;
+  margin-left: -8%;
+  background: var(--color-neutral-700);
+  border-radius: 0 0 0.6rem 0.6rem;
+}
+
+/* ---------- Rodina 18: O nás — statistiky+mapa, loga (slidy 8–13) ---------- */
+.slide--stats-map > *, .slide--logos > * { max-width: none; }
+.sm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+  width: 100%;
+}
+.sm-grid .fig { aspect-ratio: 4 / 3; }
+.logo-group { margin-bottom: var(--space-8); }
+.logo-group h4 {
+  color: var(--color-brand-yellow);
+  text-transform: uppercase;
+  letter-spacing: var(--font-tracking-caps);
+  font-size: var(--font-size-sm);
+  margin: 0 0 var(--space-4);
+}
+@media (max-width: 768px) { .sm-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Rodina 19: Reference karty (slidy 14–30) ---------- */
+.slide--ref-cards > * { max-width: none; }
+.ref-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); width: 100%; }
+.ref-card {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.ref-card .fig { aspect-ratio: 16 / 10; }
+.ref-card .ref-logo { color: var(--color-neutral-white); font-weight: var(--font-weight-semibold); }
+.ref-card p { margin: 0; font-size: var(--font-size-sm); }
+@media (max-width: 768px) { .ref-cards { grid-template-columns: 1fr; } }
+
+/* ---------- Rodina 20: Kontakty / tým (slide 31) ---------- */
+.slide--contacts { align-items: center; text-align: center; }
+.slide--contacts > * { max-width: none; }
+.contacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-8);
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+.contact-card .photo {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-image-placeholder);
+  border: 1px solid var(--color-alpha-white-10);
+  margin-bottom: var(--space-4);
+}
+.contact-card .name { color: var(--color-brand-yellow); font-weight: var(--font-weight-medium); font-size: var(--font-size-lg); }
+.contact-card .role { color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-2); }
+.contact-card .meta { font-size: var(--font-size-sm); color: var(--color-alpha-white-80); }
+
 /* ---------- Utility ---------- */
+
+/* Rámečkový „chip" (větší než .tag) — např. „Smart Digital Solutions" na titulní */
+.chip {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-neutral-white);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-6);
+}
 
 .overline {
   display: block;
