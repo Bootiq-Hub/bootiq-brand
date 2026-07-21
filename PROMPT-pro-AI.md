@@ -1,9 +1,12 @@
-# BOOTIQ prezentace — prompt pro AI
+<!-- PLNÁ pravidla — nasazují se na Pages a čtou je ukazatelové soubory
+     z bootiq_prezentace/distribuce/. Nikdy sem nevkládat ukazatel na
+     tuto adresu (zacyklení AI). -->
 
-Zkopíruj VŠE pod čarou a vlož do ChatGPT/Claude jako první zprávu. Pak napiš
-vlastní zadání (pro koho, o čem, kolik slidů). Vygenerovaný soubor ulož
-s příponou `.html` kamkoliv (třeba na plochu) a otevři poklikáním — styly se
-načtou z firemní adresy automaticky.
+# BOOTIQ prezentace — plná pravidla vzhledu
+
+Tento soubor čtou AI asistenti automaticky (odkazuje na něj distribuovaný
+soubor `BOOTIQ-AI-prezentace.md`). Závazná pravidla jsou část pod
+oddělovačem `---`. Řeší POUZE vzhled — žádný firemní obsah.
 
 ---
 
