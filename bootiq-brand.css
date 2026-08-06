@@ -306,38 +306,105 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
 /* Obsah nad dekoracemi (glow, badge, dekory pozadí). */
 .slide > * { max-width: 60rem; position: relative; z-index: 1; }
 
-/* Sdílený vizuální podpis — žlutý prosvit na levé hraně (rodiny 1–20).
-   Dekorativní, pod obsahem; funguje i pro HTML bez tříd. */
+/* Sdílený vizuální podpis (ověřeno proti Figma šabloně, slidy 1/33/41/60):
+   vnější černé okolí + zaoblený rám s jemným borderem a oranžovým
+   prosvitem na levé hraně. Dekorativní, pod obsahem. */
+.slide {
+  background: var(--color-neutral-950);
+}
 .slide::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: clamp(0.75rem, 1.6vw, 1.5rem);
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(
-    58% 78% at 0% 45%,
-    color-mix(in srgb, var(--color-brand-yellow) 9%, transparent),
-    transparent 68%
-  );
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-alpha-white-10);
+  background:
+    /* Oranžový glow — dekorativní artwork šablony, hex záměrně mimo tokeny
+       (stejný precedens jako glow SVG v TopImage). */
+    radial-gradient(38% 62% at 0% 50%, rgba(240, 138, 36, 0.32), transparent 72%),
+    var(--gradient-panel);
 }
 
-/* Sdílený badge „B." vpravo nahoře na všech slidech; na titulních plné logo. */
+/* Sdílený badge „B." vpravo nahoře — box s rámečkem (Figma); na titulních
+   slidech místo něj plné logo (viz .slide--title::after). */
 .slide::after {
   content: 'B.';
   position: absolute;
-  top: clamp(1.25rem, 3vw, 2.75rem);
-  right: clamp(1.25rem, 3vw, 2.75rem);
+  top: clamp(1.5rem, 3vw, 2.75rem);
+  right: clamp(1.5rem, 3vw, 2.75rem);
   z-index: 2;
+  display: grid;
+  place-items: center;
+  width: clamp(2.25rem, 3.4vw, 3.25rem);
+  height: clamp(2.25rem, 3.4vw, 3.25rem);
+  border-radius: 0.625rem;
+  border: 1px solid var(--color-alpha-white-20);
+  background: var(--color-neutral-850);
   font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-lg);
+  font-size: clamp(1.1rem, 1.7vw, 1.5rem);
   letter-spacing: var(--font-tracking-tight);
   color: var(--color-brand-yellow);
-  opacity: 0.9;
+}
+
+/* Overline ve slidech: Figma šablona ho má bez verzálek, větší a šedý
+   (na rozdíl od webového uppercase overline). */
+.slide .overline {
+  text-transform: none;
+  letter-spacing: var(--font-tracking-normal);
+  font-size: clamp(1.125rem, 1.8vw, 1.75rem);
+  line-height: 1.4;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+}
+
+/* Obsahové nadpisy slidů jsou v šabloně výrazně větší než webové h2. */
+.slide h2 {
+  font-size: clamp(2rem, 3.4vw, 4rem);
+  line-height: 1.15;
 }
 
 /* ---------- Rodina 1: Titulní (slide--title) ---------- */
 .slide--title { align-items: flex-start; }
-.slide--title::after { content: 'BOOTIQ'; letter-spacing: var(--font-tracking-caps); }
+/* Titulní slidy nesou plné oficiální logo (assets/bootiq-logo.svg)
+   místo badge boxu (viz .slide::after výše). */
+.slide--title::after {
+  content: '';
+  width: clamp(4rem, 8vw, 6.5rem);
+  height: auto;
+  aspect-ratio: 1339.6 / 717.9;
+  border: 0;
+  background: url('./assets/bootiq-logo.svg') no-repeat center / contain;
+  opacity: 1;
+}
+
+/* Gradient titulků dle šablony: bílá → šedá; žluté zvýraznění přes <em>,
+   šedý řádek přes .muted (potřebují vlastní text-fill kvůli clipu). */
+.slide--title h1,
+.slide--section h2 {
+  background: linear-gradient(180deg, var(--color-neutral-white) 30%, var(--color-neutral-300));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.slide--title h1 em,
+.slide--section h2 em {
+  background: none;
+  -webkit-text-fill-color: var(--color-brand-yellow);
+}
+.slide--title h1 .muted {
+  -webkit-text-fill-color: var(--color-text-secondary);
+}
+
+/* Texturované pozadí slidů dle Figma šablony — odkomentovat po exportu
+   assetu z Figmy do src/assets/bg-slide.png (úkol: export brand assetů):
+.slide {
+  background-image: url('./assets/bg-slide.png');
+  background-size: cover;
+  background-position: center;
+}
+*/
 .slide--title h1 { font-size: clamp(3rem, 8vw, 6.75rem); line-height: 1.07; }
 /* druhý řádek titulku šedě: <h1>Řádek<br><span class="muted">Řádek</span></h1> */
 .slide--title h1 .muted { color: var(--color-text-secondary); }
@@ -416,14 +483,15 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
   justify-content: center;
   text-align: center;
 }
-.slide--section > * { max-width: 46rem; }
+.slide--section > * { max-width: 52rem; }
+/* Figma slide 33: kapitolový titulek je řádově větší (≈H1) a subtitle bílý. */
 .slide--section h2 {
-  font-size: clamp(2.4rem, 6vw, 4.75rem);
-  line-height: 1.1;
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
+  line-height: 1.05;
 }
 .slide--section .subtitle {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
+  font-size: clamp(1.125rem, 1.9vw, 1.75rem);
+  color: var(--color-neutral-white);
 }
 
 /* --photo: celoplošné foto pozadí (placeholder), ztlumené do tmava */
@@ -614,20 +682,45 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
   width: 100%;
 }
 .slide--grid-cards.cols-2 .grid-cards { grid-template-columns: repeat(2, 1fr); }
-.num-card .num { font-size: var(--font-size-2xl); display: block; margin-bottom: var(--space-2); }
-.num-card h3 { font-size: var(--font-size-lg); margin: 0 0 var(--space-2); }
-.num-card p { margin: 0; font-size: var(--font-size-sm); }
+/* Figma slide 41: karty bez rámečků — jen žluté číslo a šedý text. */
+.num-card .num {
+  display: block;
+  margin-bottom: var(--space-3);
+  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-yellow);
+}
+.num-card h3 { font-size: clamp(1rem, 1.4vw, 1.375rem); margin: 0 0 var(--space-2); }
+.num-card p {
+  margin: 0;
+  font-size: clamp(0.875rem, 1.15vw, 1.375rem);
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
 @media (max-width: 768px) { .grid-cards { grid-template-columns: 1fr; } }
 
 /* ---------- Rodina 7: Tabulky (slidy 60–64) ---------- */
 .slide--table > * { max-width: none; }
-.slide--table table { font-size: var(--font-size-sm); }
-.slide--table th, .slide--table td {
-  border: 1px solid var(--color-alpha-white-10);
-  padding: var(--space-3);
-  background: var(--color-alpha-white-3);
+/* Figma slide 60: „dlaždicová" tabulka — buňky jako boxy s mezerami,
+   hlavička s výraznějším rámečkem, žádné sdílené linky. */
+.slide--table table {
+  border-collapse: separate;
+  border-spacing: 0.375rem 0.5rem;
+  font-size: clamp(0.8rem, 1vw, 1.125rem);
 }
-.slide--table th { background: var(--color-alpha-white-7); color: var(--color-neutral-white); }
+.slide--table th, .slide--table td {
+  border: 0;
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-alpha-white-5);
+  border-radius: 0.5rem;
+}
+.slide--table th {
+  background: var(--color-neutral-850);
+  border: 1px solid var(--color-alpha-white-40);
+  border-radius: 0.625rem;
+  color: var(--color-neutral-white);
+  font-weight: var(--font-weight-semibold);
+}
 
 /* ---------- Rodina 8: Ceník / srovnání plánů (slidy 57–59) ---------- */
 .slide--pricing > *, .slide--compare > * { max-width: none; }
@@ -1101,7 +1194,13 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
 }
 
 @media print {
-  html { scroll-snap-type: none; }
+  html {
+    scroll-snap-type: none;
+    /* PDF ladění: strana má pevných 190mm — mírně menší rem základ
+     * (16px → 14px) zhustí typografii, aby se obsahově plné slidy
+     * (mřížky karet, tabulky, procesy) spolehlivě vešly na stranu. */
+    font-size: 14px;
+  }
   body { background: var(--color-neutral-900); }
   * {
     -webkit-print-color-adjust: exact;
@@ -1110,8 +1209,16 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
   .slide {
     min-height: auto;
     height: 190mm;
+    /* Pevný padding místo vw clampu — tisk má stálou šířku strany. */
+    padding: 12mm 16mm;
     break-after: page;
     page-break-after: always;
+    overflow: hidden;
+  }
+  /* Poslední slide bez zalomení — jinak PDF končí prázdnou stranou. */
+  .slide:last-of-type {
+    break-after: auto;
+    page-break-after: auto;
   }
   .biq-progress, .biq-counter { display: none; }
 }
