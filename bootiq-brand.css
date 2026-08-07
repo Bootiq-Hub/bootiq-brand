@@ -296,7 +296,9 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(2rem, 7vw, 5rem);
+  /* Strop 8.375rem = 134px na 1920 slidu — obsah dle Figma šablony začíná
+     až za glow pruhem na levé hraně (Rectangle 22842 končí na x≈133). */
+  padding: clamp(2rem, 7vw, 8.375rem);
   max-width: 100%;
   overflow: hidden;
   position: relative;
@@ -1238,8 +1240,10 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
   .slide {
     min-height: auto;
     height: 190mm;
-    /* Pevný padding místo vw clampu — tisk má stálou šířku strany. */
-    padding: 12mm 16mm;
+    /* Pevný padding místo vw clampu — tisk má stálou šířku strany.
+       Boční 22mm ≈ 7 % šířky strany (338mm) — obsah začíná za glow
+       pruhem, stejný poměr jako na obrazovce. */
+    padding: 12mm 22mm;
     break-after: page;
     page-break-after: always;
     overflow: hidden;
