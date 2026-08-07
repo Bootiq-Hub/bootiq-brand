@@ -1224,6 +1224,154 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
   margin: 0;
 }
 
+/* ---------- Prodejní doplňky (v1.3.0) ---------- */
+
+/* Drobný zdrojový/poznámkový řádek (citace dat, odkazy) */
+.slide .source {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Piktogram místo čísla v kartách — inline SVG dědí barvu */
+.num-card .picto {
+  height: 2.5rem;
+  color: var(--color-brand-yellow);
+  display: block;
+}
+.num-card .picto svg { height: 100%; width: auto; display: block; }
+
+/* Reference s velkým prodejním číslem */
+.ref-card .value {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-yellow);
+  font-size: clamp(1.9rem, 3.2vw, 3rem);
+  line-height: 1;
+}
+.ref-card .label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--font-tracking-caps);
+}
+
+/* Schodišťová varianta procesu — karty rostou zleva doprava
+   (dle Figma šablony „Model připravenosti"), poslední krok zvýrazněn */
+.flow--stairs { align-items: flex-end; }
+.flow--stairs .flow-step {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.flow--stairs .flow-step:nth-of-type(1) { min-height: 9rem; }
+.flow--stairs .flow-step:nth-of-type(2) { min-height: 11.5rem; }
+.flow--stairs .flow-step:nth-of-type(3) { min-height: 14rem; }
+.flow--stairs .flow-step:nth-of-type(4) { min-height: 16.5rem; }
+.flow--stairs .flow-step:last-of-type h3 { color: var(--color-brand-yellow); }
+
+/* Žlutá lišta pod diagramem (důvěra, garance…) */
+.trust-bar {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  align-items: baseline;
+  background: var(--color-brand-yellow);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+}
+.trust-bar strong { font-weight: var(--font-weight-semibold); }
+
+/* Hub — žlutý střed, vysvětlené boxy 3+3 po stranách */
+.hub {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-4);
+  align-items: center;
+  width: 100%;
+}
+.hub-col { display: grid; gap: var(--space-3); }
+.hub-node {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+}
+.hub-node h4 {
+  margin: 0 0 var(--space-1);
+  color: var(--color-neutral-white);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+.hub-node p { margin: 0; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.hub-center {
+  background: var(--color-brand-yellow);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-5);
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
+@media (max-width: 768px) { .hub { grid-template-columns: 1fr; } }
+
+/* Gantt s vyššími drahami a popiskem uvnitř pruhu */
+.gantt--roomy .gantt-row { padding: var(--space-2) 3px; }
+.gantt--roomy .bar {
+  height: 2.75rem;
+  opacity: 1;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  color: var(--color-text-inverse);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Cenové karty (atraktivnější než tabulka) */
+.price-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+  width: 100%;
+}
+.price-card {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+.price-card.featured {
+  border-color: var(--color-brand-yellow);
+  box-shadow: var(--shadow-glow-yellow);
+}
+.price-card h3 { margin: 0; color: var(--color-neutral-white); }
+.price-card .price {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-yellow);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  line-height: 1.1;
+}
+.price-card ul {
+  margin: 0;
+  padding-left: 1.1em;
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-alpha-white-80);
+}
+.price-card .note { font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+@media (max-width: 768px) { .price-cards { grid-template-columns: 1fr; } }
+
 @media print {
   html {
     scroll-snap-type: none;
