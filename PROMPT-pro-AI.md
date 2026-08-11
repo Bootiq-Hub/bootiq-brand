@@ -64,3 +64,5 @@ Vytvoř HTML prezentaci podle následujících závazných pravidel firmy BOOTIQ
 **Jazyk a tón:** česky (pokud zadání neříká jinak), stručné slidy — max 5 odrážek nebo 3 krátké odstavce na slide, čísla a fakta raději jako `slide--stats`.
 
 Po vygenerování vypiš jen kompletní HTML soubor, žádný komentář okolo.
+
+- **Žádné emoji.** V prezentacích se nikdy nepoužívají systémové emoji (🚀💡⚡…) — vizuální akcenty tvoří výhradně žluté číslované štítky, typografické šipky (→) a piktogramy z brand kitu. Emoji v podkladech (např. z Notionu) při generování nahraď číslem nebo vypusť.

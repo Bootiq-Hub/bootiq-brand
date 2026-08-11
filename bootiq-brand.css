@@ -2692,6 +2692,154 @@ a.num-card h3::after {
 .contacts--compact .contact-card { padding: var(--space-4); }
 .contacts--compact { margin-top: var(--space-4); }
 
+
+/* ---------- Demo kanálové karty (v1.6.0) ----------
+   Ukázky „vstup → výstup" jako miniatury reálných kanálů,
+   ne diagramové krabičky. */
+
+.demo-input {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  align-items: baseline;
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border-left: 3px solid var(--color-brand-yellow);
+  background: var(--color-alpha-white-3);
+  margin-bottom: var(--space-6);
+}
+.demo-input > span {
+  color: var(--color-brand-yellow);
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.demo-input > strong {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-white);
+  font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+}
+
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  width: 100%;
+}
+.channel-grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+.channel-card {
+  border: 1px solid var(--color-alpha-white-10);
+  border-radius: var(--radius-md);
+  background: var(--color-neutral-850);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.channel-card__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-alpha-white-10);
+  background: var(--color-alpha-white-3);
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+}
+.channel-card__bar i {
+  width: 0.5rem;
+  aspect-ratio: 1;
+  border-radius: var(--radius-circle);
+  border: 1px solid var(--color-alpha-white-30);
+  flex: none;
+}
+.channel-card__bar em {
+  font-style: normal;
+  margin-left: auto;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-alpha-white-20);
+  border-radius: 2px;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+}
+.channel-card__bar .avatar {
+  width: 1.1rem;
+  aspect-ratio: 1;
+  border-radius: var(--radius-circle);
+  background: var(--color-brand-yellow);
+  flex: none;
+}
+.channel-card__body {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+.channel-card__copy {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-white);
+  font-size: clamp(0.95rem, 1.15vw, 1.25rem);
+  line-height: 1.3;
+}
+
+/* Skeleton primitivy pro demo karty */
+.mw-line { height: 0.45rem; border-radius: 2px; background: var(--color-alpha-white-10); }
+.mw-line--80 { width: 80%; }
+.mw-line--60 { width: 60%; }
+.mw-line--40 { width: 40%; }
+.mw-block {
+  height: 1.6rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-alpha-white-5);
+  border: 1px dashed var(--color-alpha-white-20);
+}
+.mw-block--accent { background: var(--color-brand-yellow); border: 0; }
+
+.channel-card .mw-line { height: 0.45rem; }
+.channel-card .mw-block { height: 1.6rem; }
+
+
+/* CTA s kartou obchodníka a QR vizitkou (v1.6.1) */
+.cta-contact-row {
+  display: flex;
+  gap: var(--space-5);
+  justify-content: center;
+  align-items: stretch;
+  margin: var(--space-6) 0;
+}
+.cta-contact-row .contact-card { min-width: 16rem; }
+.qr-box {
+  display: grid;
+  align-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--color-neutral-white);
+  border-radius: var(--radius-lg);
+  width: 11rem;
+}
+.qr-box svg { display: block; width: 100%; height: auto; }
+.qr-box svg path { fill: var(--color-neutral-900); }
+.qr-box small { color: var(--color-neutral-700, #555); font-size: 0.7rem; text-align: center; }
+
+/* Rozcestník dalších oblastí v patičce CTA */
+.next-areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-5);
+}
+.next-areas a { color: var(--color-brand-yellow); text-decoration: none; }
+.next-areas a::after { content: ' →'; }
+.next-areas .current { color: var(--color-neutral-white); }
+.next-areas .current::after { content: ' ✓'; color: var(--color-brand-yellow); }
+
 @media print {
   html {
     scroll-snap-type: none;
