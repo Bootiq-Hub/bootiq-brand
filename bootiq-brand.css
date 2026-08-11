@@ -2886,6 +2886,11 @@ a.num-card h3::after {
    Vizuální kompozice miniprezentací (v1.6.4)
    ============================================================ */
 
+/* kompozice zabírají celou šířku slidu (výjimka z .slide > * max-width) */
+.slide .scale-gap,
+.slide .readiness-stair,
+.slide .human-loop { width: 100%; max-width: none; }
+
 /* Křivka škálování — poptávka po obsahu vs. kapacita týmu */
 .scale-gap {
   display: grid;
@@ -2921,7 +2926,7 @@ a.num-card h3::after {
   font-weight: var(--font-weight-medium);
 }
 
-.scale-gap__chart svg { display: block; width: 100%; height: 100%; min-height: 0; }
+.scale-gap__chart svg { display: block; width: 100%; height: auto; max-height: clamp(18rem, 42vh, 28rem); margin: 0 auto; }
 
 .scale-gap__axis { stroke: var(--color-alpha-white-20); stroke-width: 2; }
 
