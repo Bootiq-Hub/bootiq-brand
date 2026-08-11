@@ -1372,6 +1372,386 @@ hr { border: 0; border-top: 1px solid var(--color-alpha-white-10); margin: var(-
 .price-card .note { font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 @media (max-width: 768px) { .price-cards { grid-template-columns: 1fr; } }
 
+/* ---------- Katalogová navigace (v1.3.1) ---------- */
+
+/* Klikací karta rozcestníku — <a> se vzhledem num-card */
+a.num-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+a.num-card h3::after {
+  content: ' →';
+  color: var(--color-brand-yellow);
+}
+
+/* Zpětný odkaz na rozcestník (funguje i jako interní odkaz v PDF) */
+.slide .backlink {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: var(--space-6);
+  padding: var(--space-1) var(--space-4);
+  border: 1px solid var(--color-alpha-white-30);
+  border-radius: var(--radius-pill);
+  color: var(--color-brand-yellow);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+}
+
+/* ---------- Diagramové kompozice (v1.4.0) ----------
+   Vizuální jazyk převzat z presentation-kitu kolegy (AI Readiness Audit):
+   hairline rámečky, alpha výplně, caption labely, značené konektory,
+   žlutý akcentový uzel, tečková „foundation" lišta, jemný scan paprsek. */
+
+.dg-caption {
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* Stage path — rostoucí schody s akcentovaným vrcholem (cover instrument) */
+.stage-path { width: 100%; position: relative; }
+.stage-path__row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  align-items: end;
+  min-height: 15rem;
+}
+.stage {
+  position: relative;
+  display: grid;
+  align-content: end;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-alpha-white-3);
+}
+.stage:nth-child(1) { height: 48%; }
+.stage:nth-child(2) { height: 64%; }
+.stage:nth-child(3) { height: 82%; }
+.stage:nth-child(4) { height: 100%; }
+.stage > span {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  color: var(--color-brand-yellow);
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+}
+.stage strong { font-size: clamp(0.94rem, 1vw, 1.12rem); font-weight: var(--font-weight-medium); }
+.stage small { color: var(--color-text-secondary); font-size: 0.78rem; }
+.stage--accent {
+  border-color: var(--color-brand-yellow);
+  background: var(--color-brand-yellow);
+  color: var(--color-text-inverse);
+}
+.stage--accent > span { color: var(--color-text-inverse); }
+.stage--accent small { color: rgba(20, 20, 20, 0.7); }
+.stage-path__foundation {
+  display: grid;
+  grid-template-columns: 1fr repeat(4, var(--space-3));
+  gap: var(--space-2);
+  align-items: center;
+  margin-top: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-brand-yellow);
+  color: var(--color-brand-yellow);
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+.stage-path__foundation i {
+  width: var(--space-2);
+  aspect-ratio: 1;
+  background: var(--color-brand-yellow);
+  border-radius: var(--radius-circle);
+}
+
+/* Node flow — uzly se značenými konektory (audience / destination flow) */
+.nf {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr auto;
+  align-items: stretch;
+  gap: var(--space-2);
+  width: 100%;
+}
+.nf-node {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-alpha-white-3);
+  border-radius: var(--radius-sm);
+}
+.nf-node > span {
+  color: var(--color-brand-yellow);
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+.nf-node strong { font-size: clamp(0.9rem, 1.05vw, 1.15rem); font-weight: var(--font-weight-medium); }
+.nf-node small { color: var(--color-text-secondary); font-size: 0.78rem; }
+.nf-node--accent { border-color: var(--color-brand-yellow); background: rgba(255, 205, 5, 0.08); }
+.nf-link {
+  align-self: center;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-1);
+  min-width: 6.5rem;
+  padding: 0 var(--space-1);
+}
+.nf-link span { color: var(--color-text-secondary); font-size: 0.72rem; text-align: center; }
+.nf-link i {
+  width: 100%;
+  height: 1px;
+  background: var(--color-alpha-white-30);
+  position: relative;
+}
+.nf-link i::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  border: 3.5px solid transparent;
+  border-left-color: var(--color-brand-yellow);
+}
+.nf-result {
+  margin-top: var(--space-4);
+  display: flex;
+  gap: var(--space-4);
+  align-items: baseline;
+  padding: var(--space-2) var(--space-4);
+  border-left: 2px solid var(--color-brand-yellow);
+  background: var(--color-alpha-white-3);
+}
+.nf-result > span:first-child {
+  color: var(--color-brand-yellow);
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Multiplikace — kombinatorická exploze */
+.mult {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+}
+.mult-factor {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-alpha-white-3);
+  text-align: center;
+}
+.mult-factor strong {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  color: var(--color-neutral-white);
+  line-height: 1;
+}
+.mult-factor small { color: var(--color-text-secondary); font-size: 0.78rem; }
+.mult-x { color: var(--color-brand-yellow); font-size: clamp(1.2rem, 1.6vw, 1.6rem); }
+.mult-result {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-brand-yellow);
+  color: var(--color-text-inverse);
+  text-align: center;
+}
+.mult-result strong {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.8rem, 2.8vw, 2.75rem);
+  line-height: 1;
+}
+.mult-result small { font-size: 0.78rem; font-weight: var(--font-weight-semibold); }
+.mult-burst { display: flex; flex-wrap: wrap; gap: 3px; max-width: 11rem; }
+.mult-burst i {
+  width: 0.5rem;
+  aspect-ratio: 1;
+  background: var(--color-alpha-white-30);
+  border-radius: 1px;
+}
+.mult-burst i:nth-child(4n) { background: var(--color-brand-yellow); }
+
+/* Phase map — fáze s pruhy na časové ose + řádek vstupů klienta */
+.phase-map { width: 100%; display: grid; gap: var(--space-2); }
+.phase-map__scale {
+  display: grid;
+  grid-template-columns: 15rem repeat(var(--cols, 5), 1fr);
+  gap: var(--space-2);
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+.phase-map__scale strong { text-align: center; font-weight: var(--font-weight-semibold); }
+.phase-row {
+  display: grid;
+  grid-template-columns: 15rem repeat(var(--cols, 5), 1fr);
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-alpha-white-10);
+}
+.phase-row__label { display: grid; gap: 1px; }
+.phase-row__label span { color: var(--color-brand-yellow); font-size: 0.78rem; font-weight: var(--font-weight-semibold); }
+.phase-row__label strong { color: var(--color-neutral-white); font-weight: var(--font-weight-medium); }
+.phase-row__label small { color: var(--color-text-secondary); font-size: 0.78rem; }
+.phase-row .bar {
+  grid-row: 1;
+  height: 2.2rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand-yellow);
+  color: var(--color-text-inverse);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.phase-map__inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: baseline;
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-brand-yellow);
+}
+.phase-map__inputs strong {
+  color: var(--color-brand-yellow);
+  font-size: 0.78rem;
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+.phase-map__inputs span {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  padding: 2px var(--space-3);
+  border: 1px solid var(--color-alpha-white-10);
+  border-radius: var(--radius-pill);
+}
+
+/* Deliverable groups — skupiny výstupů se šipkami + řádek zarovnání */
+.deliv { width: 100%; display: grid; gap: var(--space-4); }
+.deliv__groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.deliv-group { position: relative; display: grid; gap: var(--space-2); align-content: start; }
+.deliv-group > .dg-caption span { color: var(--color-brand-yellow); margin-right: var(--space-2); }
+.deliv-group:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: calc(var(--space-5) / -1 + 0.4rem);
+  top: 0;
+  color: var(--color-brand-yellow);
+}
+.deliv-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-alpha-white-3);
+  border-radius: var(--radius-sm);
+}
+.deliv-item > span { color: var(--color-brand-yellow); font-size: 0.78rem; font-weight: var(--font-weight-semibold); }
+.deliv-item h3 { margin: 0 0 2px; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); color: var(--color-neutral-white); }
+.deliv-item p { margin: 0; font-size: 0.82rem; color: var(--color-text-secondary); }
+.deliv__alignment {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-brand-yellow);
+  font-size: 0.78rem;
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+.deliv__alignment > span { color: var(--color-brand-yellow); font-weight: var(--font-weight-semibold); }
+.deliv__alignment strong { color: var(--color-neutral-white); font-weight: var(--font-weight-medium); }
+.deliv__alignment i { flex: 1; height: 1px; background: var(--color-alpha-white-30); }
+
+/* Composer — kvalifikační hovor / CTA karta */
+.composer {
+  width: min(100%, 34rem);
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-alpha-white-3);
+  border-radius: var(--radius-lg);
+  text-align: left;
+}
+.composer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-alpha-white-10);
+}
+.composer__header span {
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+.composer__header strong { color: var(--color-brand-yellow); font-family: var(--font-family-display); }
+.composer__field {
+  display: grid;
+  grid-template-columns: auto 7rem 1fr;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-alpha-white-10);
+}
+.composer__field span { color: var(--color-brand-yellow); font-size: 0.78rem; font-weight: var(--font-weight-semibold); }
+.composer__field small { color: var(--color-text-secondary); font-size: 0.78rem; text-transform: uppercase; letter-spacing: var(--font-tracking-caps); }
+.composer__field strong { color: var(--color-neutral-white); font-weight: var(--font-weight-medium); }
+.composer__output {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-brand-yellow);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-sm);
+}
+.composer__output span {
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+.composer__output strong { font-weight: var(--font-weight-semibold); }
+
+@media (max-width: 768px) {
+  .nf { grid-auto-flow: row; grid-auto-columns: auto; }
+  .nf-link { min-width: 0; }
+  .deliv__groups { grid-template-columns: 1fr; }
+  .deliv-group:not(:last-child)::after { content: '↓'; right: auto; left: 0; top: auto; bottom: -1.4rem; }
+  .phase-map__scale, .phase-row { grid-template-columns: 8rem repeat(var(--cols, 5), 1fr); }
+  .stage-path__row { min-height: 11rem; }
+}
+
 @media print {
   html {
     scroll-snap-type: none;
