@@ -2882,6 +2882,191 @@ a.num-card h3::after {
   border-right: 0;
 }
 
+/* ============================================================
+   Vizuální kompozice miniprezentací (v1.6.4)
+   ============================================================ */
+
+/* Křivka škálování — poptávka po obsahu vs. kapacita týmu */
+.scale-gap {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-5);
+  align-items: stretch;
+  margin-top: clamp(1.4rem, 3vh, 2.5rem);
+}
+
+.scale-gap__chart {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: var(--hairline) solid var(--color-border-default);
+  background: linear-gradient(180deg, var(--color-alpha-white-5), var(--color-alpha-white-3));
+}
+
+.scale-gap__caption {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+}
+
+.scale-gap__caption span {
+  color: var(--color-brand-yellow);
+  font-size: var(--projection-caption);
+  font-weight: var(--font-weight-semibold);
+}
+
+.scale-gap__caption strong {
+  font-size: var(--projection-body-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+.scale-gap__chart svg { display: block; width: 100%; height: 100%; min-height: 0; }
+
+.scale-gap__axis { stroke: var(--color-alpha-white-20); stroke-width: 2; }
+
+.scale-gap__fill { fill: rgba(255, 205, 5, 0.07); }
+
+.scale-gap__demand { fill: none; stroke: var(--color-brand-yellow); stroke-width: 5; stroke-linecap: round; }
+
+.scale-gap__capacity { fill: none; stroke: var(--color-alpha-white-40); stroke-width: 3; stroke-dasharray: 12 10; }
+
+.scale-gap__gapline { stroke: var(--color-brand-yellow); stroke-width: 2; stroke-dasharray: 4 7; }
+
+.scale-gap__chart text {
+  fill: var(--color-alpha-white-80);
+  font-size: 27px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.1em;
+}
+
+.scale-gap__chart text.t-demand { fill: var(--color-brand-yellow); }
+
+.scale-gap__chart text.t-soft {
+  fill: var(--color-alpha-white-60);
+  font-size: 23px;
+  font-weight: var(--font-weight-regular, 400);
+  letter-spacing: 0.03em;
+}
+
+.scale-gap__issues {
+  display: grid;
+  gap: var(--space-3);
+  align-content: center;
+}
+
+.scale-gap__issue {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  border: var(--hairline) solid var(--color-border-default);
+  border-left: var(--space-1) solid var(--color-brand-yellow);
+  background: var(--color-alpha-white-3);
+}
+
+.scale-gap__issue span {
+  color: var(--color-brand-yellow);
+  font-size: var(--projection-caption);
+  font-weight: var(--font-weight-semibold);
+}
+
+.scale-gap__issue strong { font-size: var(--projection-body-lg); font-weight: var(--font-weight-medium); }
+
+.scale-gap__issue p { color: var(--color-text-secondary); font-size: var(--projection-caption); line-height: 1.35; }
+
+/* Schodiště pěti přínosů (rozšíření readiness-stair) */
+.readiness-stair--5 { grid-template-columns: repeat(5, 1fr); }
+
+.readiness-stair--5 .readiness-step--1 { min-height: 21rem; }
+
+.readiness-stair--5 .readiness-step--2 { min-height: 23rem; }
+
+.readiness-stair--5 .readiness-step--3 { min-height: 25.5rem; }
+
+.readiness-stair--5 .readiness-step--4 {
+  min-height: 28rem;
+  background: linear-gradient(180deg, var(--color-alpha-white-7), var(--color-alpha-white-3));
+}
+
+.readiness-step--5 {
+  min-height: 30rem;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-brand-yellow) 16%, transparent), var(--color-alpha-white-3));
+}
+
+/* Kreativec uprostřed — AI přihrává (disclaimer) */
+.human-loop {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-6);
+  align-items: center;
+  margin-top: clamp(1.4rem, 3vh, 2.5rem);
+}
+
+.human-loop__col { display: grid; gap: var(--space-4); }
+
+.human-loop__item {
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  border: var(--hairline) solid var(--color-border-default);
+  background: var(--color-alpha-white-3);
+}
+
+.human-loop__item strong { font-size: var(--projection-body); font-weight: var(--font-weight-medium); }
+
+.human-loop__item p { color: var(--color-text-secondary); font-size: var(--projection-caption); line-height: 1.35; }
+
+.human-loop__item i {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.7rem;
+  color: var(--color-brand-yellow);
+  font-size: var(--projection-body-lg);
+  font-style: normal;
+  font-weight: var(--font-weight-semibold);
+}
+
+.human-loop__col--l .human-loop__item i { right: calc(-1 * var(--space-6) + 0.4rem); }
+
+.human-loop__col--r .human-loop__item i { left: calc(-1 * var(--space-6) + 0.4rem); }
+
+.human-loop__center {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  min-width: 20rem;
+  max-width: 24rem;
+  padding: var(--space-6) var(--space-5);
+  border: var(--hairline) solid var(--color-brand-yellow);
+  background: linear-gradient(180deg, rgba(255, 205, 5, 0.14), var(--color-alpha-white-3));
+  text-align: center;
+}
+
+.human-loop__center svg { width: 5.5rem; height: 5.5rem; color: var(--color-brand-yellow); }
+
+.human-loop__center strong {
+  font-size: var(--projection-lead);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+
+.human-loop__center em {
+  color: var(--color-brand-yellow);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+
+.human-loop__center small {
+  max-width: 17rem;
+  color: var(--color-alpha-white-80);
+  font-size: var(--projection-caption);
+  line-height: 1.4;
+}
+
 @media print {
   html {
     scroll-snap-type: none;
