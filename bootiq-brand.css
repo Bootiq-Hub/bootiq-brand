@@ -1444,15 +1444,8 @@ a.num-card h3::after {
   letter-spacing: var(--font-tracking-caps);
 }
 
-.reveal,
-.reveal-stack > *,
-.slide .evidence-engine section,
-.slide .delivery-map__phase,
-.slide .domain-system__node,
-.slide .deliverable-system__group {
-  opacity: 0;
-  transform: translate3d(0, var(--space-5), 0);
-}
+/* reveal stavy odstraněny — vše staticky viditelné (PDF-first) */
+
 
 .slide .reveal,
 .slide .reveal-stack > *,
@@ -2689,6 +2682,16 @@ a.num-card h3::after {
 .discipline-intersection__pulse,
 .fragility-scanner__beam,
 .question-target__signal { display: none !important; }
+
+/* Dvoudílná varianta evidence enginu (VSTUP → VÝSTUPY, bez prostřední sekce) */
+.evidence-engine--duo { grid-template-columns: minmax(16rem, 0.7fr) auto 1.3fr; }
+.evidence-engine--duo .evidence-engine__finding-grid { grid-template-columns: 1fr 1fr; }
+
+/* Kompaktní kontakty (CTA slide s composerem — bez foto placeholderů) */
+.contacts--compact .contact-card .photo { display: none; }
+.contacts--compact .contact-card { padding: var(--space-4); }
+.contacts--compact { margin-top: var(--space-4); }
+
 @media print {
   html {
     scroll-snap-type: none;
