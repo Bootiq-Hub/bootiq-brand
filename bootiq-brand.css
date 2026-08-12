@@ -3072,6 +3072,88 @@ a.num-card h3::after {
   line-height: 1.4;
 }
 
+/* Use-case slidy — levá polovina obsah, pravá vizualizace (v1.6.5) */
+.slide .uc-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+}
+
+.uc-left { display: grid; gap: var(--space-4); align-content: center; }
+
+.uc-claim {
+  color: var(--color-alpha-white-80);
+  font-size: var(--projection-lead);
+  line-height: 1.4;
+}
+
+.uc-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.uc-card {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  padding: var(--space-4);
+  border: var(--hairline) solid var(--color-border-default);
+  border-top: var(--space-1) solid var(--color-brand-yellow);
+  background: var(--color-alpha-white-3);
+}
+
+.uc-card .picto { color: var(--color-brand-yellow); }
+
+.uc-card .picto svg { display: block; width: 2.4rem; height: 2.4rem; }
+
+.uc-card strong { font-size: var(--projection-body); font-weight: var(--font-weight-medium); }
+
+.uc-card p { color: var(--color-text-secondary); font-size: var(--projection-caption); line-height: 1.35; }
+
+.uc-visual { display: grid; gap: var(--space-3); align-content: center; min-height: 0; }
+
+.uc-visual--placeholder {
+  place-content: center;
+  min-height: 26rem;
+  padding: var(--space-5);
+  border: 1px dashed var(--color-alpha-white-20);
+  background: var(--color-alpha-white-3);
+  color: var(--color-text-secondary);
+  font-size: var(--projection-caption);
+  letter-spacing: var(--font-tracking-caps);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.channel-grid--1 { grid-template-columns: 1fr; }
+
+.channel-card--wide { grid-column: 1 / -1; }
+
+/* Ilustrace use-case vizuálů — line-art v brand stylu */
+.uc-illustration { display: block; width: 100%; height: auto; max-height: 30rem; margin: 0 auto; }
+
+.uc-illustration .ln { fill: none; stroke: var(--color-alpha-white-40); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.uc-illustration .ln-strong { fill: none; stroke: var(--color-alpha-white-80); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.uc-illustration .accent { fill: none; stroke: var(--color-brand-yellow); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.uc-illustration .accent-fill { fill: var(--color-brand-yellow); stroke: none; }
+
+.uc-illustration .soft-fill { fill: var(--color-alpha-white-5); stroke: var(--color-alpha-white-20); stroke-width: 1.5; stroke-linejoin: round; }
+
+.uc-illustration text { fill: var(--color-alpha-white-80); font-family: inherit; font-size: 15px; letter-spacing: 0.04em; }
+
+.uc-illustration text.t-accent { fill: var(--color-brand-yellow); font-weight: var(--font-weight-semibold); }
+
+.uc-illustration text.t-soft { fill: var(--color-alpha-white-60); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+
 @media print {
   html {
     scroll-snap-type: none;
