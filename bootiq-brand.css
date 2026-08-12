@@ -2907,6 +2907,7 @@ a.num-card h3::after {
   padding: var(--space-4) var(--space-5);
   border: var(--hairline) solid var(--color-border-default);
   background: linear-gradient(180deg, var(--color-alpha-white-5), var(--color-alpha-white-3));
+  border-radius: var(--radius-md);
 }
 
 .scale-gap__caption {
@@ -2967,6 +2968,7 @@ a.num-card h3::after {
   border: var(--hairline) solid var(--color-border-default);
   border-left: var(--space-1) solid var(--color-brand-yellow);
   background: var(--color-alpha-white-3);
+  border-radius: var(--radius-md);
 }
 
 .scale-gap__issue span {
@@ -3016,6 +3018,7 @@ a.num-card h3::after {
   padding: var(--space-4) var(--space-5);
   border: var(--hairline) solid var(--color-border-default);
   background: var(--color-alpha-white-3);
+  border-radius: var(--radius-md);
 }
 
 .human-loop__item strong { font-size: var(--projection-body); font-weight: var(--font-weight-medium); }
@@ -3046,6 +3049,7 @@ a.num-card h3::after {
   border: var(--hairline) solid var(--color-brand-yellow);
   background: linear-gradient(180deg, rgba(255, 205, 5, 0.14), var(--color-alpha-white-3));
   text-align: center;
+  border-radius: var(--radius-md);
 }
 
 .human-loop__center svg { width: 5.5rem; height: 5.5rem; color: var(--color-brand-yellow); }
@@ -3104,8 +3108,8 @@ a.num-card h3::after {
   align-content: start;
   padding: var(--space-4);
   border: var(--hairline) solid var(--color-border-default);
-  border-top: var(--space-1) solid var(--color-brand-yellow);
   background: var(--color-alpha-white-3);
+  border-radius: var(--radius-md);
 }
 
 .uc-card .picto { color: var(--color-brand-yellow); }
@@ -3129,11 +3133,60 @@ a.num-card h3::after {
   letter-spacing: var(--font-tracking-caps);
   text-align: center;
   text-transform: uppercase;
+  border-radius: var(--radius-md);
 }
 
 .channel-grid--1 { grid-template-columns: 1fr; }
 
 .channel-card--wide { grid-column: 1 / -1; }
+
+/* Titulní slide s velkým vizuálem — poloviny 1:1 */
+.slide--title-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.slide--title-split > * { max-width: none; }
+
+.slide--title-split .title-copy {
+  display: grid;
+  justify-items: start;
+  align-content: center;
+  gap: var(--space-4);
+}
+
+/* v polovině slidu je plná velikost H1 příliš — zmenšeno */
+.slide--title-split h1 { font-size: clamp(2.5rem, 4.6vw, 4.75rem); }
+
+.slide--title-split .slide__media--img {
+  position: static;
+  top: auto;
+  right: auto;
+  width: 100%;
+  aspect-ratio: auto;
+}
+
+.slide--title-split .slide__media--img img {
+  width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+}
+
+/* Obrázkové vizuály (use-case PNG + intro) */
+.uc-visual img {
+  display: block;
+  width: 100%;
+  max-width: 32rem;
+  height: auto;
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+}
+
+.slide__media--img { border: 0; background: none; aspect-ratio: auto; }
+
+.slide__media--img img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); }
 
 /* Ilustrace use-case vizuálů — line-art v brand stylu */
 .uc-illustration { display: block; width: 100%; height: auto; max-height: 30rem; margin: 0 auto; }
