@@ -10,6 +10,18 @@
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
   if (!slides.length) return;
 
+  // Fixní plátno 1920×1080 → přizpůsobení oknu zoomem (na tisk se neaplikuje).
+  function fit() {
+    var z = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.body.style.zoom = z;
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  window.addEventListener('beforeprint', function () {
+    document.body.style.zoom = 1;
+  });
+  window.addEventListener('afterprint', fit);
+
   var progress = document.createElement('div');
   progress.className = 'biq-progress';
   var counter = document.createElement('div');
