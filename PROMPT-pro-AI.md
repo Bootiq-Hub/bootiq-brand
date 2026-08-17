@@ -66,4 +66,5 @@ Vytvoř HTML prezentaci podle následujících závazných pravidel firmy BOOTIQ
 Po vygenerování vypiš jen kompletní HTML soubor, žádný komentář okolo.
 
 - **Žádné emoji.** V prezentacích se nikdy nepoužívají systémové emoji (🚀💡⚡…) — vizuální akcenty tvoří výhradně žluté číslované štítky, typografické šipky (→) a piktogramy z brand kitu. Emoji v podkladech (např. z Notionu) při generování nahraď číslem nebo vypusť.
+- **Prodejní tón z pozice dodavatele.** Claimy a nadpisy řešení a use-casů formuluj pozitivně a v naší roli: „Naučíme vás…", „Pomůžeme vám…", „Ukážeme vám…", „Nastavíme vám…". Bolet smí jen problémový slide; zbytek prezentace nesmí zákazníka odrazovat náročností.
 - **Žádné žluté linky na kartách.** Obsahové karty (benefity, výhody, body) mají pouze tenký neutrální rámeček (`--color-border-default`) — žlutá horní/boční linka je v rozporu s brand manuálem. Žlutou nesou jen piktogramy, štítky a zvýrazněný text.

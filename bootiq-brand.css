@@ -2734,7 +2734,7 @@ a.num-card h3::after {
 
 .channel-card {
   border: 1px solid var(--color-alpha-white-10);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: var(--color-neutral-850);
   overflow: hidden;
   display: grid;
@@ -2907,7 +2907,7 @@ a.num-card h3::after {
   padding: var(--space-4) var(--space-5);
   border: var(--hairline) solid var(--color-border-default);
   background: linear-gradient(180deg, var(--color-alpha-white-5), var(--color-alpha-white-3));
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .scale-gap__caption {
@@ -2968,7 +2968,7 @@ a.num-card h3::after {
   border: var(--hairline) solid var(--color-border-default);
   border-left: var(--space-1) solid var(--color-brand-yellow);
   background: var(--color-alpha-white-3);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .scale-gap__issue span {
@@ -3018,7 +3018,7 @@ a.num-card h3::after {
   padding: var(--space-4) var(--space-5);
   border: var(--hairline) solid var(--color-border-default);
   background: var(--color-alpha-white-3);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .human-loop__item strong { font-size: var(--projection-body); font-weight: var(--font-weight-medium); }
@@ -3049,7 +3049,7 @@ a.num-card h3::after {
   border: var(--hairline) solid var(--color-brand-yellow);
   background: linear-gradient(180deg, rgba(255, 205, 5, 0.14), var(--color-alpha-white-3));
   text-align: center;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .human-loop__center svg { width: 5.5rem; height: 5.5rem; color: var(--color-brand-yellow); }
@@ -3109,7 +3109,7 @@ a.num-card h3::after {
   padding: var(--space-4);
   border: var(--hairline) solid var(--color-border-default);
   background: var(--color-alpha-white-3);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .uc-card .picto { color: var(--color-brand-yellow); }
@@ -3133,12 +3133,81 @@ a.num-card h3::after {
   letter-spacing: var(--font-tracking-caps);
   text-align: center;
   text-transform: uppercase;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .channel-grid--1 { grid-template-columns: 1fr; }
 
 .channel-card--wide { grid-column: 1 / -1; }
+
+/* CTA patička — rozcestník oblastí jako karty + outline ikony sítí */
+.next-areas-heading {
+  margin-top: var(--space-6);
+  color: var(--color-neutral-white);
+  font-size: var(--projection-body-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.slide .area-cards {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-3);
+  width: 100%;
+  max-width: none;
+  margin-top: var(--space-3);
+}
+
+.area-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: var(--hairline) solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-alpha-white-3);
+  color: var(--color-neutral-white);
+  font-size: var(--projection-caption);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.area-card svg { flex: none; width: 1.5rem; height: 1.5rem; color: var(--color-brand-yellow); }
+
+a.area-card:hover { border-color: var(--color-alpha-white-40); }
+
+.area-card--current {
+  border-color: var(--color-brand-yellow);
+  background: rgba(255, 205, 5, 0.1);
+}
+
+.footer-back {
+  display: inline-block;
+  margin-top: var(--space-6);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+}
+
+.footer-back:hover { color: var(--color-neutral-white); }
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-5);
+  margin-top: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.footer-social a { color: var(--color-text-secondary); text-decoration: none; }
+
+.footer-social a:hover { color: var(--color-neutral-white); }
+
+.footer-social .icon { display: inline-flex; color: var(--color-alpha-white-60); }
+
+.footer-social .icon svg { width: 1.5rem; height: 1.5rem; }
 
 /* Titulní slide s velkým vizuálem — poloviny 1:1 */
 .slide--title-split {
@@ -3160,13 +3229,14 @@ a.num-card h3::after {
 /* v polovině slidu je plná velikost H1 příliš — zmenšeno */
 .slide--title-split h1 { font-size: clamp(2.5rem, 4.6vw, 4.75rem); }
 
-.slide--title-split .slide__media--img {
+.slide--title-split .slide__media {
   position: static;
   top: auto;
   right: auto;
   width: 100%;
-  aspect-ratio: auto;
 }
+
+.slide--title-split .slide__media--img { aspect-ratio: auto; }
 
 .slide--title-split .slide__media--img img {
   width: 100%;
@@ -3181,12 +3251,12 @@ a.num-card h3::after {
   max-width: 32rem;
   height: auto;
   margin: 0 auto;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .slide__media--img { border: 0; background: none; aspect-ratio: auto; }
 
-.slide__media--img img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); }
+.slide__media--img img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); }
 
 /* Ilustrace use-case vizuálů — line-art v brand stylu */
 .uc-illustration { display: block; width: 100%; height: auto; max-height: 30rem; margin: 0 auto; }
@@ -3206,6 +3276,116 @@ a.num-card h3::after {
 .uc-illustration text.t-accent { fill: var(--color-brand-yellow); font-weight: var(--font-weight-semibold); }
 
 .uc-illustration text.t-soft { fill: var(--color-alpha-white-60); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* ============================================================
+   Rozcestníková prezentace (v1.6.6) — hub oblastí, BiQ Group,
+   statistiky a CTA tlačítko dle Figma slidů 4/5/6
+   ============================================================ */
+
+/* Hub rozcestníku — kruh uprostřed, klikací uzly okolo (Figma slide 6) */
+.slide .hub--map { width: 100%; max-width: none; align-items: center; gap: var(--space-5); }
+
+.hub--map .hub-col { gap: var(--space-5); }
+
+a.hub-node {
+  display: block;
+  padding: var(--space-5) var(--space-4);
+  color: var(--color-neutral-white);
+  font-family: var(--font-family-display);
+  font-size: var(--projection-body-lg);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  text-decoration: none;
+}
+
+a.hub-node:hover { border-color: var(--color-brand-yellow); }
+
+.hub-center--ring {
+  display: grid;
+  place-content: center;
+  width: clamp(14rem, 18vw, 18rem);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid var(--color-alpha-white-20);
+  border-radius: var(--radius-circle);
+  background: var(--color-alpha-white-5);
+  color: var(--color-neutral-white);
+  font-size: var(--projection-lead);
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* Popisky sloupců kompozice human-loop */
+.human-loop__label {
+  color: var(--color-brand-yellow);
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-tracking-caps);
+  text-transform: uppercase;
+}
+
+/* Svislý sloupec statistik (Proč BOOTIQ, Figma slide 5) */
+.stat-stack { display: grid; gap: var(--space-5); align-content: center; }
+
+/* Strom skupiny BiQ (Figma slide 4) */
+.slide .group-tree {
+  display: grid;
+  gap: var(--space-6);
+  justify-items: center;
+  width: 100%;
+  max-width: none;
+  margin-top: var(--space-6);
+}
+
+.group-tree__root {
+  padding: var(--space-4) var(--space-7, 2.5rem);
+  border-radius: var(--radius-lg);
+  background: var(--color-neutral-white);
+  color: var(--color-neutral-900);
+  font-family: var(--font-family-display);
+  font-size: clamp(1.3rem, 1.8vw, 1.8rem);
+  font-weight: var(--font-weight-semibold);
+}
+
+.group-tree__row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.group-tree__member {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  padding: var(--space-5) var(--space-3);
+  border: var(--hairline) solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-alpha-white-3);
+  text-align: center;
+}
+
+.group-tree__member strong { font-family: var(--font-family-display); font-size: var(--projection-body-lg); }
+
+.group-tree__member p { color: var(--color-text-secondary); font-size: var(--projection-caption); line-height: 1.5; }
+
+.group-tree__member--accent { border-color: var(--color-brand-yellow); background: var(--color-brand-yellow); }
+
+.group-tree__member--accent strong { color: var(--color-neutral-900); }
+
+.group-tree__member--accent p { color: color-mix(in srgb, var(--color-neutral-900) 75%, transparent); }
+
+/* CTA tlačítko (styl webu) */
+.btn-cta {
+  display: inline-block;
+  padding: 0.85rem 1.7rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-yellow);
+  color: var(--color-text-inverse);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
 
 @media print {
   html {
